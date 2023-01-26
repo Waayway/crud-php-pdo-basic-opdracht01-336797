@@ -27,11 +27,11 @@ function getAllFormEntries($pdo) {
 
 // Update
 
-function updateFormEntry($pdo, $id, $firstName, $prefix, $lastName) {
-    $sql = "UPDATE form_entry SET firstName = ?, prefix = ?, lastName = ?
+function updateFormEntry($pdo, $id, $firstName, $prefix, $lastName, $phoneNumber, $streetName, $houseNumber, $woonplaats, $postcode, $countryName) {
+    $sql = "UPDATE form_entry SET firstName = ?, prefix = ?, lastName = ?, phoneNumber = ?, streetName = ?, houseNumber = ?, woonplaats = ?, postcode = ?, countryName = ?
             WHERE id = ?";
     $statement = $pdo->prepare($sql);
-    $statement->execute([$firstName, $prefix, $lastName, $id]);
+    $statement->execute([$firstName, $prefix, $lastName, $phoneNumber, $streetName, $houseNumber, $woonplaats, $postcode, $countryName, $id]);
 }
 
 // Delete
