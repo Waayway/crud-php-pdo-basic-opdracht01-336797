@@ -12,14 +12,17 @@
             color: white;
             font-family: sans-serif;
         }
+
         form * {
             display: block;
         }
 
-        table td, table th {
+        table td,
+        table th {
             padding: 1em;
             border: 1px grey solid;
         }
+
         a {
             color: white;
         }
@@ -28,19 +31,27 @@
 
 <body>
     <?php
-        require 'lib/main.php';
-        
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (array_key_exists("first-name",$_POST) and array_key_exists("prefix",$_POST) and array_key_exists("last-name",$_POST)) {
-                createFormEntry($pdo, $_POST['first-name'], $_POST['prefix'], $_POST['last-name']);
-                header("refresh: 0");
-            }
-        }
-    ?>
-    <?php 
-        $data = getAllFormEntries($pdo);
+    require 'lib/main.php';
 
-        echo "
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (array_key_exists("first-name", $_POST) and 
+            array_key_exists("prefix", $_POST) and 
+            array_key_exists("last-name", $_POST) and 
+            array_key_exists("phone_number", $_POST) and 
+            array_key_exists("street-name", $_POST) and 
+            array_key_exists("house_number", $_POST) and 
+            array_key_exists("woonplaats", $_POST) and 
+            array_key_exists("postcode", $_POST) and 
+            array_key_exists("country-name", $_POST)) {
+            createFormEntry($pdo, $_POST['first-name'], $_POST['prefix'], $_POST['last-name']);
+            header("refresh: 0");
+        }
+    }
+    ?>
+    <?php
+    $data = getAllFormEntries($pdo);
+
+    echo "
         <table>
             <thead>
             <th>Id</th>
@@ -51,21 +62,21 @@
             <th></th>
             </thead>
         ";
-        foreach ($data as $value) {
-            echo "<tr>";
-            echo "<td>" . $value->id . "</td>";
-            echo "<td>" . $value->firstName . "</td>";
-            echo "<td>" . $value->prefix . "</td>";
-            echo "<td>" . $value->lastName . "</td>";
-            echo '<td><a href="update.php?id=' . $value->id . '">Edit</a></td>';
-            echo '<td><a href="delete.php?id=' . $value->id . '">Delete</a></td>';
-            echo "</tr>";
-        }
-        echo "</table>";
+    foreach ($data as $value) {
+        echo "<tr>";
+        echo "<td>" . $value->id . "</td>";
+        echo "<td>" . $value->firstName . "</td>";
+        echo "<td>" . $value->prefix . "</td>";
+        echo "<td>" . $value->lastName . "</td>";
+        echo '<td><a href="update.php?id=' . $value->id . '">Edit</a></td>';
+        echo '<td><a href="delete.php?id=' . $value->id . '">Delete</a></td>';
+        echo "</tr>";
+    }
+    echo "</table>";
     ?>
-    
+
     <br>
-    
+
     <form action="index.php" method="post">
         <label for="first-name">Voornaam:</label>
         <input type="text" name="first-name">
