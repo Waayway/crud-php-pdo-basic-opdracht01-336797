@@ -49,6 +49,10 @@
             array_key_exists("postcode", $_POST) and 
             array_key_exists("country-name", $_POST)
         ) {
+            $phoneNumber = $_POST["phone-number"];
+            if (strlen($phoneNumber) == 10) {
+                $phoneNumber = substr($phoneNumber, 2);
+            }
             updateFormEntry($pdo, $_POST['id'], $_POST['first-name'], $_POST['prefix'], $_POST['last-name'], $phoneNumber, $_POST["street-name"], $_POST["house-number"], $_POST["woonplaats"], $_POST["postcode"], $_POST["country-name"]);
             header('Location: /');
         }
