@@ -53,8 +53,13 @@
             if (strlen($phoneNumber) == 10) {
                 $phoneNumber = substr($phoneNumber, 2);
             }
-            updateFormEntry($pdo, $_POST['id'], $_POST['first-name'], $_POST['prefix'], $_POST['last-name'], $phoneNumber, $_POST["street-name"], $_POST["house-number"], $_POST["woonplaats"], $_POST["postcode"], $_POST["country-name"]);
-            header('Location: /');
+            try {
+                updateFormEntry($pdo, $_POST['id'], $_POST['first-name'], $_POST['prefix'], $_POST['last-name'], $phoneNumber, $_POST["street-name"], $_POST["house-number"], $_POST["woonplaats"], $_POST["postcode"], $_POST["country-name"]);
+                echo "Het record is geupdate";
+                header('Refresh: 3; url=index.php');
+            } catch (PDOException $error) {
+                echo "Er is iets verkeerd gegaan, probeer het opnieuw";
+            }
         }
     }
     ?>

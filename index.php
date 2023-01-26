@@ -34,7 +34,6 @@
     require 'lib/main.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        var_dump($_POST);
         if (array_key_exists("first-name", $_POST) and 
             array_key_exists("prefix", $_POST) and 
             array_key_exists("last-name", $_POST) and 
