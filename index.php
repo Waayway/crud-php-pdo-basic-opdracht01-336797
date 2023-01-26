@@ -34,16 +34,17 @@
     require 'lib/main.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        var_dump($_POST);
         if (array_key_exists("first-name", $_POST) and 
             array_key_exists("prefix", $_POST) and 
             array_key_exists("last-name", $_POST) and 
-            array_key_exists("phone_number", $_POST) and 
+            array_key_exists("phone-number", $_POST) and 
             array_key_exists("street-name", $_POST) and 
-            array_key_exists("house_number", $_POST) and 
+            array_key_exists("house-number", $_POST) and 
             array_key_exists("woonplaats", $_POST) and 
             array_key_exists("postcode", $_POST) and 
             array_key_exists("country-name", $_POST)) {
-            createFormEntry($pdo, $_POST['first-name'], $_POST['prefix'], $_POST['last-name']);
+            createFormEntry($pdo, $_POST['first-name'], $_POST['prefix'], $_POST['last-name'], $_POST["phone-number"], $_POST["street-name"], $_POST["house-number"], $_POST["woonplaats"], $_POST["postcode"], $_POST["country-name"]);
             header("refresh: 0");
         }
     }
@@ -88,8 +89,8 @@
         <input type="text" name="phone-number">
         <label for="street-name">Straat naam:</label>
         <input type="text" name="street-name">
-        <label for="house_number">Huisnummer:</label>
-        <input type="number" name="house_number">
+        <label for="house-number">Huisnummer:</label>
+        <input type="number" name="house-number">
         <label for="woonplaats">Woonplaats: </label>
         <input type="text" name="woonplaats">
         <label for="postcode">Postcode:</label>

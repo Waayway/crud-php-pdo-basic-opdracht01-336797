@@ -2,10 +2,10 @@
 
 // Create
 
-function createFormEntry(PDO $pdo, $firstName, $prefix, $lastName) {
-    $sql = 'INSERT INTO form_entry (firstName, prefix, lastName) VALUES (?,?,?)';
+function createFormEntry(PDO $pdo, $firstName, $prefix, $lastName, $phoneNumber, $streetName, $houseNumber, $woonplaats, $postcode, $countryName) {
+    $sql = 'INSERT INTO form_entry (firstName, prefix, lastName, phoneNumber, streetName, houseNumber, woonplaats, postcode, countryName) VALUES (?,?,?,?,?,?,?,?,?)';
     $statement = $pdo->prepare($sql);
-    $statement->execute([$firstName, $prefix, $lastName]);
+    $statement->execute([$firstName, $prefix, $lastName, $phoneNumber, $streetName, $houseNumber, $woonplaats, $postcode, $countryName]);
 }
 
 // Read
